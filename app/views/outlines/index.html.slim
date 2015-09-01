@@ -1,0 +1,26 @@
+.page-header
+  h1 Outlines
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li.active = link_to 'Outlines', outlines_path
+
+p = link_to 'New Outline', new_outline_path, class: 'btn btn-primary'
+
+table.table.top30
+  thead
+    tr
+      th Title
+      th Number
+      th
+      th
+
+  tbody
+    - @outlines.each do |outline|
+      tr
+        td = outline.title
+        td.text-center = outline.number
+        td.text-center = link_to 'Edit', edit_outline_path(outline), class: 'btn btn-default'
+        td.text-center
+          = link_to 'Destroy', outline, data: {:confirm => 'Are you sure?'},
+            method: :delete, class: 'btn btn-danger'

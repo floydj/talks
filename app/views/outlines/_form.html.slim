@@ -1,0 +1,15 @@
+= simple_form_for @outline do |f|
+  - if @outline.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@outline.errors.count, "error")} prohibited this outline from being saved:"
+      ul
+        - @outline.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.input :number, input_html: { autofocus: true }
+
+  .field
+    = f.input :title
+
+  .actions = f.submit 'Save', class: 'btn btn-primary'
