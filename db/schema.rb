@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901011233) do
+ActiveRecord::Schema.define(version: 20150901020310) do
+
+  create_table "congregations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "number"
+    t.string   "meeting_time"
+    t.string   "meeting_day"
+    t.string   "address"
+    t.string   "kh_phone"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "talk_coordinator"
+    t.string   "talk_coordinator_phone"
+  end
 
   create_table "outlines", force: :cascade do |t|
     t.string   "title"

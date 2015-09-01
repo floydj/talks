@@ -1,0 +1,11 @@
+- title "Edit #{@congregation.name}"
+
+.page-header
+  h1 Edit Congregation
+
+ul.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li.active Edit
+
+== render 'form'

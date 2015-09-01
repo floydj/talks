@@ -1,0 +1,23 @@
+= simple_form_for(@congregation) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+    .row
+      .col-xs-12.col-sm-6
+        = f.input :name, input_html: { autofocus: true }
+      .col-xs-12.col-sm-6
+        = f.input :meeting_time, label: 'Meeting Time'
+      .col-xs-12.col-sm-6
+        = f.input :meeting_day, label: 'Meeting Day'
+      .col-xs-12.col-sm-6
+        = f.input :address, label: 'Address'
+      .col-xs-12.col-sm-6
+        = f.input :kh_phone, label: 'Phone'
+      .col-xs-12.col-sm-6
+        = f.input :talk_coordinator
+      .col-xs-12.col-sm-6
+        = f.input :talk_coordinator_phone
+
+  .form-actions
+    = f.button :submit, 'Save', class: 'btn btn-primary'

@@ -1,0 +1,21 @@
+- title @congregation.name
+
+.page-header
+  h1 = @congregation.name
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li.active = @congregation.name
+
+p
+  strong Address:
+  = @congregation.address
+
+p
+  strong Meeting time:
+  = @congregation.time_and_day
+
+p
+  strong Phone:
+  = @congregation.kh_phone
