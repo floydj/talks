@@ -19,3 +19,10 @@ p
 p
   strong Phone:
   = @congregation.kh_phone
+
+h2 Brothers
+p = link_to 'Add Brother', new_congregation_brother_path(@congregation), class: 'btn btn-primary btn-sm'
+- @congregation.brothers.order(:last_name, :first_name).each do |brother|
+  p
+    => brother.full_name
+    = link_to 'Edit', edit_brother_path(brother), class: 'btn btn-default'

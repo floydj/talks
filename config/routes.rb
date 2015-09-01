@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'general/home'
 
-  resources :congregations
+  resources :congregations do
+    resources :brothers, shallow: true
+  end
   resources :outlines
 
   # The priority is based upon order of creation: first created -> highest priority.

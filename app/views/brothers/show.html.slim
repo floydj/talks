@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Congregation:
+  = @brother.congregation
+p
+  strong First name:
+  = @brother.first_name
+p
+  strong Last name:
+  = @brother.last_name
+p
+  strong Phone:
+  = @brother.phone
+p
+  strong Email:
+  = @brother.email
+
+= link_to 'Edit', edit_brother_path(@brother)
+'|
+= link_to 'Back', brothers_path

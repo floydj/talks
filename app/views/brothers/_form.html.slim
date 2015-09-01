@@ -1,0 +1,20 @@
+= simple_form_for [@congregation, @brother] do |f|
+  = f.error_notification
+
+  /= hidden_field_tag :congregation_id, @congregation
+
+  .form-inputs
+    .row
+      /.col-xs-12.col-sm-6
+        = f.association :congregation
+      .col-xs-12.col-sm-6
+        = f.input :first_name
+      .col-xs-12.col-sm-6
+        = f.input :last_name
+      .col-xs-12.col-sm-6
+        = f.input :phone
+      .col-xs-12.col-sm-6
+        = f.input :email
+
+  .form-actions
+    = f.button :submit, 'Save', class: 'btn btn-primary'

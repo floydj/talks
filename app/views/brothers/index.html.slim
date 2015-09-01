@@ -1,0 +1,29 @@
+h1 Listing brothers
+
+table
+  thead
+    tr
+      th Congregation
+      th First name
+      th Last name
+      th Phone
+      th Email
+      th
+      th
+      th
+
+  tbody
+    - @brothers.each do |brother|
+      tr
+        td = brother.congregation
+        td = brother.first_name
+        td = brother.last_name
+        td = brother.phone
+        td = brother.email
+        td = link_to 'Show', brother
+        td = link_to 'Edit', edit_brother_path(brother)
+        td = link_to 'Destroy', brother, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Brother', new_brother_path
