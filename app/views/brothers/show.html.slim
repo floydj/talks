@@ -3,7 +3,7 @@
 .page-header
   h1
     => @brother.full_name
-    small = link_to 'Edit', edit_brother_path(@brother)
+    small = link_to 'Edit', edit_brother_path(@brother), class: 'btn-edit btn-link'
 
 ol.breadcrumb
   li = link_to 'Home', root_path

@@ -9,19 +9,18 @@ ul.breadcrumb
 
 p
   => link_to 'New Congregation', new_congregation_path,
-    class: 'btn btn-primary'
+    class: 'btn-add'
 
   = link_to 'Add Multiple Congregations', multiple_congregations_path,
     class: 'btn btn-link'
 
-table.table.top30
+table.table.top30.table-condensed
   thead
     tr
       th Name
       th Meeting Time
       th Address
       th Phone
-      th
       th
 
   tbody
@@ -31,8 +30,8 @@ table.table.top30
         td = congregation.time_and_day
         td = congregation.address
         td = congregation.kh_phone
-        td = link_to 'Edit', edit_congregation_path(congregation), class: 'btn btn-default'
         td
+          => link_to 'Edit', edit_congregation_path(congregation), class: 'btn-edit btn-xs'
           = link_to 'Destroy', congregation, data: {:confirm => 'Are you sure?'},
-            method: :delete, class: 'btn btn-danger'
+            method: :delete, class: 'btn-delete btn-xs'
 

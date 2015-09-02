@@ -3,7 +3,7 @@
 .page-header
   h1
     => @congregation.name
-    small = link_to 'Edit', edit_congregation_path(@congregation), class: 'btn btn-primary btn-sm'
+    small = link_to 'Edit', edit_congregation_path(@congregation), class: 'btn-edit btn-link'
 
 ol.breadcrumb
   li = link_to 'Home', root_path
@@ -24,13 +24,13 @@ dl.dl-horizontal
 h2 Brothers
 
 p
-  => link_to 'Add Brother', new_congregation_brother_path(@congregation),
-    class: 'btn btn-primary btn-sm'
+  => link_to "Add Brother", new_congregation_brother_path(@congregation),
+    class: 'btn-sm btn-add'
 
-  = link_to 'Add Multiple Brothers', multiple_congregation_brothers_path(@congregation),
-    class: 'btn btn-link'
+  = link_to icon('users') + 'Add Multiple Brothers', multiple_congregation_brothers_path(@congregation),
+    class: 'btn-link btn-icon'
 
 hr
 
 - @congregation.brothers.order(:last_name, :first_name).each do |brother|
-  = link_to brother.full_name, brother, class: 'btn btn-default'
+  = link_to brother.full_name, brother, class: 'btn-brother'

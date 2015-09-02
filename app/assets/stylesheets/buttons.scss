@@ -1,0 +1,44 @@
+.btn i.fa {
+  padding-right: 0.5em;
+}
+
+.btn-icon {
+  @extend .btn;
+  &:before {
+    @extend .fa;
+    padding-right: 0.5em;
+  }
+}
+
+.btn-add {
+  @extend .btn-icon;
+  @extend .btn-primary;
+  &:before {
+    @extend .fa-plus;
+  }
+}
+
+.btn-delete {
+  @extend .btn-icon;
+  @extend .btn-danger;
+  &:before {
+    @extend .fa-minus;
+  }
+}
+
+.btn-edit {
+  @extend .btn-icon;
+  @extend .btn-default;
+  &:before {
+    @extend .fa-pencil;
+  }
+}
+
+.btn-brother {
+  @extend .btn-icon;
+  @extend .btn-default;
+  &:before {
+    @extend .fa-user;
+  }
+}
+
