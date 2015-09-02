@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get 'general/home'
 
   resources :congregations do
-    resources :brothers, shallow: true
+    resources :brothers, shallow: true do
+      get :multiple, on: :collection
+      post :add_multiple, on: :collection
+    end
 
     get :multiple, on: :collection
     post :add_multiple, on: :collection

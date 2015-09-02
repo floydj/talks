@@ -1,0 +1,24 @@
+- title 'Enter Multiple Brothers'
+.page-header
+  h1
+    ' Add Multiple Brothers
+    small Enter one name per line
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li = link_to @congregation.name, @congregation
+  li.active Add Multiple Brothers
+
+= form_tag add_multiple_congregation_brothers_path do
+  .row.bottom30
+    .col-xs-12
+      = label_tag :brothers, 'Brothers'
+
+    .col-xs-12
+      = text_area_tag :brothers, nil, class: 'form-control',
+        required: true, rows: 10
+
+  .row
+    .col-xs-12
+      = submit_tag 'Add Brothers', class: 'btn btn-primary'

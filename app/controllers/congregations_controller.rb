@@ -7,8 +7,7 @@ class CongregationsController < ApplicationController
       return
     end
 
-    congs = params[:congregations]
-    congs.gsub! "\r", ''
+    congs = params[:congregations].gsub! "\r", ''
     congregations = congs.split "\n"
     congregations.each do |cong|
       Congregation.create(name: cong,
