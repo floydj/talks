@@ -7,20 +7,18 @@ ol.breadcrumb
 
 p = link_to 'New Outline', new_outline_path, class: 'btn btn-primary'
 
-table.table.top30
+table.table.table-condensed.top30
   thead
     tr
-      th Title
       th Number
-      th
+      th Title
       th
 
   tbody
     - @outlines.each do |outline|
       tr
-        td = outline.title
         td.text-center = outline.number
-        td.text-center = link_to 'Edit', edit_outline_path(outline), class: 'btn btn-default'
+        td = link_to outline.title, edit_outline_path(outline)
         td.text-center
           = link_to 'Destroy', outline, data: {:confirm => 'Are you sure?'},
-            method: :delete, class: 'btn btn-danger'
+            method: :delete, class: 'btn btn-danger btn-xs'
