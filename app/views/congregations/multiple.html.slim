@@ -1,0 +1,23 @@
+- title 'Enter Multiple Congregations'
+.page-header
+  h1
+    ' Add Multiple Congregations
+    small Enter one name per line
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li.active Add Multiple
+
+= form_tag add_multiple_congregations_path do
+  .row.bottom30
+    .col-xs-12
+      = label_tag :congregations, 'Congregations'
+
+    .col-xs-12
+      = text_area_tag :congregations, nil, class: 'form-control',
+        required: true, rows: 10
+
+  .row
+    .col-xs-12
+      = submit_tag 'Add Congregations', class: 'btn btn-primary'

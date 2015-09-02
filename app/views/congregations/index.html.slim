@@ -7,7 +7,12 @@ ul.breadcrumb
   li = link_to 'Home', root_path
   li.active Congregations
 
-p = link_to 'New Congregation', new_congregation_path, class: 'btn btn-primary'
+p
+  => link_to 'New Congregation', new_congregation_path,
+    class: 'btn btn-primary'
+
+  = link_to 'Add Multiple', multiple_congregations_path,
+    class: 'btn btn-default'
 
 table.table.top30
   thead

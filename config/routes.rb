@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :congregations do
     resources :brothers, shallow: true
+
+    get :multiple, on: :collection
+    post :add_multiple, on: :collection
   end
 
   resources :outlines

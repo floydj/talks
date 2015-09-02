@@ -1,6 +1,28 @@
 class CongregationsController < ApplicationController
   before_action :set_congregation, only: [:show, :edit, :update, :destroy]
 
+  def add_multiple
+    if params[:congregations].blank?
+      redirect_to congregations_path
+      return
+    end
+
+    congs = params[:congregations]
+    congs.gsub! "\r", ''
+    congregations = congs.split "\n"
+    congregations.each do |cong|
+      Congregation.create(name: cong,
+                          meeting_time: "10:00 AM",
+                          meeting_day: 'Sunday')
+    end
+
+    redirect_to congregations_path
+  end
+
+  def multiple
+
+  end
+
   def index
     @congregations = Congregation.order(:name)
   end

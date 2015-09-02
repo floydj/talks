@@ -7,6 +7,7 @@
 
 ol.breadcrumb
   li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
   li = link_to @brother.congregation.name, @brother.congregation
   li.active = @brother.full_name
 
@@ -34,13 +35,13 @@ p Check an outline number below to add it to the brothers list
 = form_for [@congregation, @brother] do |f|
   = hidden_field_tag 'brother[outline_ids][]', nil
 
-  .row.outlines-list
+  ul.list-unstyled.list-inline.outlines-list
     - Outline.order(:number).each do |outline|
-      .col-xs-12.col-sm-6
+      li
         label
           => check_box_tag 'brother[outline_ids][]', outline.id, @brother.outlines.include?(outline),
             title: outline.title
-          small = outline.title_with_number
+          small = outline.number
 
   .row.top15
     .col-xs-12 = submit_tag 'Save', class: 'btn btn-primary'

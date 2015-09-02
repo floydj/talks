@@ -32,4 +32,13 @@ RSpec.feature "Congregations", type: :feature do
       expect(Congregation).to_not be_any
     end
   end
+
+  scenario 'add multiple' do
+    visit congregations_path
+    click_link 'Add Multiple'
+    fill_in 'Congregations', with: "Town1\nTown2\nTown3"
+    click_button 'Add Congregations'
+
+    expect(Congregation.count).to eql 3
+  end
 end

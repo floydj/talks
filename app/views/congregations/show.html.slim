@@ -24,4 +24,4 @@ dl.dl-horizontal
 h2 Brothers
 p = link_to 'Add Brother', new_congregation_brother_path(@congregation), class: 'btn btn-primary btn-sm'
 - @congregation.brothers.order(:last_name, :first_name).each do |brother|
-  = link_to brother.full_name, brother, class: 'btn btn-block btn-default'
+  = link_to brother.full_name, brother, class: 'btn btn-default'
