@@ -5,10 +5,8 @@
 
   .form-inputs
     .row
-      /.col-xs-12.col-sm-6
-        = f.association :congregation
       .col-xs-12.col-sm-6
-        = f.input :first_name
+        = f.input :first_name, input_html: { autofocus: true }
       .col-xs-12.col-sm-6
         = f.input :last_name
       .col-xs-12.col-sm-6

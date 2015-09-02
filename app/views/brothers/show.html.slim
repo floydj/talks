@@ -1,21 +1,46 @@
-p#notice = notice
+- title @brother.full_name
 
-p
-  strong Congregation:
-  = @brother.congregation
-p
-  strong First name:
-  = @brother.first_name
-p
-  strong Last name:
-  = @brother.last_name
-p
-  strong Phone:
-  = @brother.phone
-p
-  strong Email:
-  = @brother.email
+.page-header
+  h1
+    => @brother.full_name
+    small = link_to 'Edit', edit_brother_path(@brother)
 
-= link_to 'Edit', edit_brother_path(@brother)
-'|
-= link_to 'Back', brothers_path
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to @brother.congregation.name, @brother.congregation
+  li.active = @brother.full_name
+
+dl.dl-horizontal
+  dt Congregation:
+  dd = @brother.congregation.name
+
+  dt First name:
+  dd = @brother.first_name
+
+  dt Last name:
+  dd = @brother.last_name
+
+  dt Phone:
+  dd = @brother.phone
+
+  dt Email:
+  dd = @brother.email
+
+.page-header
+  h2
+    ' Outlines Given by #{@brother.first_name}
+
+p Check an outline number below to add it to the brothers list
+= form_for [@congregation, @brother] do |f|
+  = hidden_field_tag 'brother[outline_ids][]', nil
+
+  .row.outlines-list
+    - Outline.order(:number).each do |outline|
+      .col-xs-12.col-sm-6
+        label
+          => check_box_tag 'brother[outline_ids][]', outline.id, @brother.outlines.include?(outline),
+            title: outline.title
+          small = outline.title_with_number
+
+  .row.top15
+    .col-xs-12 = submit_tag 'Save', class: 'btn btn-primary'

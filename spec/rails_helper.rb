@@ -46,4 +46,33 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  def snap(options={})
+    path = options.fetch :path, "~/.Trash"
+    file = options.fetch :file, "#{Time.now.to_i}.png"
+    text_only = options.fetch :text_only, false
+    selector = options.fetch :selector, ''
+
+    selector.blank? ? full = true : full = false
+
+    if text_only
+      puts page.html
+    else
+      path = File.expand_path path
+      path = "/tmp" if !File.exists?(path)
+
+      uri = File.join path, file
+
+      if Capybara.current_driver == Capybara.javascript_driver
+        if full
+          page.driver.save_screenshot uri, full: full
+        else
+          page.driver.save_screenshot uri, full: full, selector: selector
+        end
+        system "open #{uri}"
+      else
+        save_and_open_page
+      end
+    end
+  end
 end

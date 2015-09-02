@@ -1,5 +1,5 @@
 class BrothersController < ApplicationController
-  before_action :set_congregation, only: [ :new ]
+  before_action :set_congregation, only: [ :new, :create ]
   before_action :set_brother, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -24,19 +24,16 @@ class BrothersController < ApplicationController
         format.html { redirect_to @brother.congregation, notice: 'Brother was successfully created.' }
         format.json { render :show, status: :created, location: @brother }
       else
-        logger.info "****#{@brother.errors.full_messages}"
         format.html { render :new }
         format.json { render json: @brother.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /brothers/1
-  # PATCH/PUT /brothers/1.json
   def update
     respond_to do |format|
       if @brother.update(brother_params)
-        format.html { redirect_to @brother.congregation, notice: 'Brother was successfully updated.' }
+        format.html { redirect_to @brother, notice: 'Brother was successfully updated.' }
         format.json { render :show, status: :ok, location: @brother }
       else
         format.html { render :edit }
@@ -45,8 +42,6 @@ class BrothersController < ApplicationController
     end
   end
 
-  # DELETE /brothers/1
-  # DELETE /brothers/1.json
   def destroy
     @brother.destroy
     respond_to do |format|
@@ -56,7 +51,6 @@ class BrothersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_brother
       @brother = Brother.find(params[:id])
     end
@@ -65,8 +59,8 @@ class BrothersController < ApplicationController
       @congregation = Congregation.find(params[:congregation_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def brother_params
-      params.require(:brother).permit(:congregation_id, :first_name, :last_name, :phone, :email)
+      params.require(:brother).permit(:congregation_id, :first_name,
+                                      :last_name, :phone, :email, :outline_ids => [])
     end
 end

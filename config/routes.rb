@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :congregations do
     resources :brothers, shallow: true
   end
+
   resources :outlines
 
   # The priority is based upon order of creation: first created -> highest priority.

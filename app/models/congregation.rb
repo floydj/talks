@@ -7,4 +7,13 @@ class Congregation < ActiveRecord::Base
     "#{meeting_day} #{meeting_time}"
   end
 
+  def full_address
+    result = ""
+    result += "#{address}" unless address.blank?
+    result += ", #{city}" unless city.blank?
+    result += ", #{state}" unless state.blank?
+    result += " #{zip}" unless zip.blank?
+    result
+  end
+
 end

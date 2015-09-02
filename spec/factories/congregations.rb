@@ -5,6 +5,9 @@ FactoryGirl.define do
     meeting_time "10:00 AM"
     meeting_day "Sunday"
     address "1234 Main St."
+    city "Anytown"
+    state "AR"
+    zip "12345"
     kh_phone '123-456-7789'
     talk_coordinator 'John Doe'
     talk_coordinator_phone '123-475-5729'

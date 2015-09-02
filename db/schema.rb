@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901022110) do
+ActiveRecord::Schema.define(version: 20150901214536) do
 
   create_table "brothers", force: :cascade do |t|
     t.integer  "congregation_id"
@@ -21,9 +21,18 @@ ActiveRecord::Schema.define(version: 20150901022110) do
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "privilege"
   end
 
   add_index "brothers", ["congregation_id"], name: "index_brothers_on_congregation_id"
+
+  create_table "brothers_outlines", force: :cascade do |t|
+    t.integer "brother_id"
+    t.integer "outline_id"
+  end
+
+  add_index "brothers_outlines", ["brother_id"], name: "index_brothers_outlines_on_brother_id"
+  add_index "brothers_outlines", ["outline_id"], name: "index_brothers_outlines_on_outline_id"
 
   create_table "congregations", force: :cascade do |t|
     t.string   "name"
