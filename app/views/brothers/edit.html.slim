@@ -2,7 +2,16 @@
 
 .page-header
   h1
-    ' Edit Brother
+    => icon 'user'
+    ' Edit #{@brother.full_name}
     small = @brother.congregation.name
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li = link_to @brother.congregation.name, @brother.congregation
+  li = link_to @brother.full_name, @brother
+  li.active Edit
+
 
 == render 'form'
