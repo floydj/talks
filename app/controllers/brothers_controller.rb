@@ -73,11 +73,11 @@ class BrothersController < ApplicationController
   private
 
   def set_brother
-    @brother = Brother.find(params[:id])
+    @brother = Brother.friendly.find(params[:id])
   end
 
   def set_congregation
-    @congregation = Congregation.find(params[:congregation_id])
+    @congregation = Congregation.friendly.find(params[:congregation_id])
   end
 
   def brother_params

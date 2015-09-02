@@ -1,7 +1,9 @@
 class Congregation < ActiveRecord::Base
+  include FriendlyId
   has_many :brothers
-
   validates_presence_of :name, :meeting_day, :meeting_time
+
+  friendly_id :name, use: :slugged
 
   def time_and_day
     "#{meeting_day} #{meeting_time}"
