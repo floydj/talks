@@ -81,6 +81,6 @@ class CongregationsController < ApplicationController
       params.require(:congregation).permit(:name, :number, :meeting_time,
                                            :meeting_day, :kh_address, :kh_phone,
                                           :talk_coordinator_phone, :talk_coordinator,
-                                          :city, :state, :zip)
+                                          :city, :state, :zip, :my_congregation)
     end
 end

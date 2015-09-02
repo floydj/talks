@@ -7,8 +7,10 @@ RSpec.feature "Congregations", type: :feature do
     fill_in 'Name', with: 'Happyville North'
     fill_in 'Meeting Time', with: '10:00 AM'
     fill_in 'Meeting Day', with: 'Sunday'
+    check 'My Congregation'
     click_button 'Save'
     expect(Congregation.count).to eql 1
+    expect(Congregation.first).to be_my_congregation
   end
 
   context 'existing' do

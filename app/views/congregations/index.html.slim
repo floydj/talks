@@ -26,7 +26,9 @@ table.table.top30.table-condensed
   tbody
     - @congregations.each do |congregation|
       tr
-        td = link_to congregation.name, congregation
+        td
+          => link_to congregation.name, congregation
+          = icon('star-o') if congregation.my_congregation?
         td = congregation.time_and_day
         td = congregation.address
         td = congregation.kh_phone

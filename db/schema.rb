@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902215302) do
+ActiveRecord::Schema.define(version: 20150902230437) do
 
   create_table "brothers", force: :cascade do |t|
     t.integer  "congregation_id"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150902215302) do
     t.string   "talk_coordinator"
     t.string   "talk_coordinator_phone"
     t.string   "slug"
+    t.boolean  "my_congregation"
   end
 
   add_index "congregations", ["slug"], name: "index_congregations_on_slug", unique: true

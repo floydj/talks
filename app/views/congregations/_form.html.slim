@@ -18,6 +18,11 @@
         = f.input :talk_coordinator
       .col-xs-12.col-sm-6
         = f.input :talk_coordinator_phone
+      .col-xs-12.col-sm-6
+        - if Congregation.my_home_congregation && Congregation.my_home_congregation.id != @congregation.id
+          .alert.alert-info There is already a congregation selected as "My Congregation"
+        - else
+          = f.input :my_congregation, label: 'My Congregation'
 
   .form-actions
     = f.button :submit, 'Save', class: 'btn btn-primary'
