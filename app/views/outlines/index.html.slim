@@ -22,3 +22,6 @@ table.table.table-condensed.table-striped.top30
         td.text-center
           = link_to 'Destroy', outline, data: {:confirm => 'Are you sure?'},
             method: :delete, class: 'btn-delete btn-xs'
+
+- if @outlines.count > 15
+  p = link_to 'New Outline', new_outline_path, class: 'btn-add'

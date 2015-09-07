@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'general/home'
 
   resources :congregations do
+    get :speaker_list, on: :member
     resources :brothers, shallow: true do
       get :multiple, on: :collection
       post :add_multiple, on: :collection

@@ -5,16 +5,13 @@ class Congregation < ActiveRecord::Base
 
   friendly_id :name, use: :slugged
 
-  scope :home_congregation, -> { where(my_congregation: true) }
-
+  scope :home_congregations, -> { where(my_congregation: true) }
   def self.my_home_congregation
-    if home_congregation.any?
-      return home_congregation.first
-    end
+    return home_congregations.first if home_congregations.any?
   end
 
   def self.my_congregation_selected?
-    return Congregation.where(my_congregation: true).any?
+    Congregation.where(my_congregation: true).any?
   end
 
   def time_and_day
@@ -22,12 +19,17 @@ class Congregation < ActiveRecord::Base
   end
 
   def full_address
-    result = ""
-    result += "#{address}" unless address.blank?
-    result += ", #{city}" unless city.blank?
-    result += ", #{state}" unless state.blank?
-    result += " #{zip}" unless zip.blank?
+    result = [address || '']
+    result.push city_state_zip unless city_state_zip.blank?
+    result = result.join ', '
     result
   end
 
+  def city_state_zip
+    result = [city || '']
+    result.push(state) unless state.blank?
+    result = result.join ', '
+    result += " #{zip}" unless zip.blank?
+    result
+  end
 end

@@ -1,0 +1,41 @@
+- title("#{@congregation.name} Speaker List")
+
+.page-header
+  h1
+    => @congregation.name
+    small Outgoing Speakers
+
+ol.breadcrumb
+  li = link_to 'Home', root_path
+  li = link_to 'Congregations', congregations_path
+  li = link_to @congregation.name, @congregation
+  li.active 'Speaker List'
+
+.row
+  .col-xs-12
+    dl
+      dt Address
+      dd
+        = @congregation.address
+        br
+        = @congregation.city_state_zip
+  .col-xs-12
+    dl
+      dt Meeting time:
+      dd = @congregation.time_and_day
+
+h2
+  ' Outgoing Speakers
+  small = link_to 'Prepare for copy', '', class: 'prepare-copy'
+
+- @congregation.brothers.each do |brother|
+  - if brother.outlines.any?
+    .row.outgoing-speaker.bottom15
+      .col-xs-12
+        p
+          strong> = brother.full_name
+          = link_to 'Hide', '', class: 'hide-speaker'
+      .col-xs-12
+        p
+          - brother.outlines.order(:number).each do |outline|
+            span = outline.number

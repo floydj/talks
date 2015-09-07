@@ -20,6 +20,11 @@ dl.dl-horizontal
   dt Phone:
   dd = @congregation.kh_phone
 
+.row
+ .col-xs-12.col-sm-6
+  = link_to 'Speaker List', speaker_list_congregation_path(@congregation),
+    class: 'btn btn-default'
+
 
 h2 Brothers
 

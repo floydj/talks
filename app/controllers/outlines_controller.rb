@@ -56,13 +56,14 @@ class OutlinesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_outline
-      @outline = Outline.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def outline_params
-      params.require(:outline).permit(:title, :number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_outline
+    @outline = Outline.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def outline_params
+    params.require(:outline).permit(:title, :number)
+  end
 end

@@ -1,5 +1,6 @@
 class CongregationsController < ApplicationController
-  before_action :set_congregation, only: [:show, :edit, :update, :destroy]
+  before_action :set_congregation, only: [:show, :edit, :update, :destroy,
+                                          :speaker_list]
 
   def add_multiple
     if params[:congregations].blank?
@@ -7,11 +8,10 @@ class CongregationsController < ApplicationController
       return
     end
 
-    congs = params[:congregations].gsub! "\r", ''
-    congregations = congs.split "\n"
+    congregations = params[:congregations].delete("\r", '').split("\n")
     congregations.each do |cong|
       Congregation.create(name: cong,
-                          meeting_time: "10:00 AM",
+                          meeting_time: '10:00 AM',
                           meeting_day: 'Sunday')
     end
 
@@ -19,7 +19,6 @@ class CongregationsController < ApplicationController
   end
 
   def multiple
-
   end
 
   def index
@@ -38,49 +37,47 @@ class CongregationsController < ApplicationController
 
   def create
     @congregation = Congregation.new(congregation_params)
-
-    respond_to do |format|
-      if @congregation.save
-        format.html { redirect_to congregations_url, notice: 'Congregation was successfully created.' }
-        format.json { render :show, status: :created, location: @congregation }
-      else
-        format.html { render :new }
-        format.json { render json: @congregation.errors, status: :unprocessable_entity }
-      end
+    if @congregation.save
+      redirect_to congregations_url,
+                  notice: 'Congregation was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @congregation.update(congregation_params)
-        format.html { redirect_to congregations_url, notice: 'Congregation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @congregation }
-      else
-        format.html { render :edit }
-        format.json { render json: @congregation.errors, status: :unprocessable_entity }
-      end
+    if @congregation.update(congregation_params)
+      redirect_to congregations_url,
+                  notice: 'Congregation was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @congregation.destroy
     respond_to do |format|
-      format.html { redirect_to congregations_url, notice: 'Congregation was successfully destroyed.' }
+      format.html do
+        redirect_to congregations_url, notice: 'Congregation was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_congregation
-      @congregation = Congregation.friendly.find(params[:id])
-    end
+  def speaker_list
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def congregation_params
-      params.require(:congregation).permit(:name, :number, :meeting_time,
-                                           :meeting_day, :kh_address, :kh_phone,
-                                          :talk_coordinator_phone, :talk_coordinator,
-                                          :city, :state, :zip, :my_congregation)
-    end
+  private
+
+  def set_congregation
+    @congregation = Congregation.friendly.find(params[:id])
+  end
+
+  def congregation_params
+    params.require(:congregation).permit(:name, :number, :meeting_time, :address,
+                                         :meeting_day, :kh_address, :kh_phone,
+                                         :talk_coordinator_phone,
+                                         :talk_coordinator,
+                                         :city, :state, :zip, :my_congregation)
+  end
 end

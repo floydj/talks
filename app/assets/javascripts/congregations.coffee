@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$('a.hide-speaker').click (event) ->
+  event.preventDefault()
+  $(@).closest('.outgoing-speaker').hide()
+
+$('a.prepare-copy').click (event) ->
+  event.preventDefault()
+  $('.row a, h2 a').hide()
